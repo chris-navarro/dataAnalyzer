@@ -17,6 +17,25 @@ def get_upload_folder():
     os.makedirs(upload_folder, exist_ok=True)
     return upload_folder
 
+def is_valid_file(filename):
+    """Check if file should be displayed (exclude git files and hidden files)"""
+    # Exclude .gitkeep, .gitignore, and other git-related files
+    git_files = {'.gitkeep', '.gitignore', '.gitattributes', '.gitmodules'}
+    
+    # Exclude files starting with . (hidden files)
+    if filename.startswith('.'):
+        return False
+    
+    # Exclude specific git files
+    if filename in git_files:
+        return False
+    
+    # Check if it's a supported file type
+    allowed_extensions = {'.xlsx', '.xls', '.xlsm', '.xlsb', '.ods', '.csv'}
+    file_ext = os.path.splitext(filename)[1].lower()
+    
+    return file_ext in allowed_extensions
+
 @main.route('/')
 def index():
     return render_template('index.html')
@@ -82,23 +101,27 @@ def upload_file():
 
 @main.route('/files', methods=['GET'])
 def list_files():
-    """List all uploaded files"""
+    """List all uploaded files (excluding git files)"""
     try:
         upload_folder = get_upload_folder()
         files = []
         
         for filename in os.listdir(upload_folder):
             filepath = os.path.join(upload_folder, filename)
-            if os.path.isfile(filepath):
-                stat = os.stat(filepath)
-                files.append({
-                    'filename': filename,
-                    'size': stat.st_size,
-                    'size_mb': round(stat.st_size / (1024 * 1024), 2),
-                    'created': datetime.fromtimestamp(stat.st_ctime).strftime('%Y-%m-%d %H:%M:%S'),
-                    'modified': datetime.fromtimestamp(stat.st_mtime).strftime('%Y-%m-%d %H:%M:%S'),
-                    'extension': os.path.splitext(filename)[1].lower()
-                })
+            
+            # Skip if not a valid file or is a git file
+            if not os.path.isfile(filepath) or not is_valid_file(filename):
+                continue
+            
+            stat = os.stat(filepath)
+            files.append({
+                'filename': filename,
+                'size': stat.st_size,
+                'size_mb': round(stat.st_size / (1024 * 1024), 2),
+                'created': datetime.fromtimestamp(stat.st_ctime).strftime('%Y-%m-%d %H:%M:%S'),
+                'modified': datetime.fromtimestamp(stat.st_mtime).strftime('%Y-%m-%d %H:%M:%S'),
+                'extension': os.path.splitext(filename)[1].lower()
+            })
         
         # Sort by creation date (newest first)
         files.sort(key=lambda x: x['created'], reverse=True)
@@ -116,6 +139,10 @@ def list_files():
 def get_file(filename):
     """Get a specific file's data"""
     try:
+        # Validate filename
+        if not is_valid_file(filename):
+            return jsonify({'error': 'Invalid file'}), 400
+        
         upload_folder = get_upload_folder()
         filepath = os.path.join(upload_folder, filename)
         
@@ -146,6 +173,10 @@ def get_file(filename):
 def delete_file(filename):
     """Delete a file"""
     try:
+        # Validate filename
+        if not is_valid_file(filename):
+            return jsonify({'error': 'Invalid file'}), 400
+        
         upload_folder = get_upload_folder()
         filepath = os.path.join(upload_folder, filename)
         
@@ -174,6 +205,10 @@ def delete_file(filename):
 def download_file(filename):
     """Download a file"""
     try:
+        # Validate filename
+        if not is_valid_file(filename):
+            return jsonify({'error': 'Invalid file'}), 400
+        
         upload_folder = get_upload_folder()
         filepath = os.path.join(upload_folder, filename)
         
@@ -187,7 +222,7 @@ def download_file(filename):
 
 @main.route('/files/clear_all', methods=['DELETE'])
 def clear_all_files():
-    """Delete all files"""
+    """Delete all files (excluding git files)"""
     try:
         upload_folder = get_upload_folder()
         
@@ -197,15 +232,18 @@ def clear_all_files():
         excel_analyzer.file_extension = None
         excel_analyzer.current_file_path = None
         
-        # Delete all files in upload folder
+        # Delete all valid files in upload folder (skip git files)
+        deleted_count = 0
         for filename in os.listdir(upload_folder):
             filepath = os.path.join(upload_folder, filename)
-            if os.path.isfile(filepath):
+            if os.path.isfile(filepath) and is_valid_file(filename):
                 os.remove(filepath)
+                deleted_count += 1
         
         return jsonify({
             'success': True,
-            'message': 'All files deleted successfully'
+            'message': f'Deleted {deleted_count} files successfully',
+            'deleted_count': deleted_count
         })
     
     except Exception as e:

@@ -755,3 +755,105 @@ $(document).ready(function() {
         });
     }
 });
+
+function isValidFile(filename) {
+    // List of git files to ignore
+    const gitFiles = ['.gitkeep', '.gitignore', '.gitattributes', '.gitmodules'];
+    
+    // Ignore hidden files and git files
+    if (filename.startsWith('.') || gitFiles.includes(filename)) {
+        return false;
+    }
+    
+    // Check for valid extensions
+    const validExtensions = ['.xlsx', '.xls', '.xlsm', '.xlsb', '.ods', '.csv'];
+    const ext = filename.substring(filename.lastIndexOf('.')).toLowerCase();
+    
+    return validExtensions.includes(ext);
+}
+
+// Update the displayFileList function to filter files
+function displayFileList(files, count) {
+    const fileList = $('#fileList');
+    const fileCount = $('#fileCount');
+    
+    // Filter out git files and hidden files
+    const validFiles = files.filter(file => isValidFile(file.filename));
+    
+    if (!validFiles || validFiles.length === 0) {
+        fileList.html(`
+            <div class="list-group-item text-center text-muted py-4">
+                <i class="fas fa-cloud-upload-alt fa-3x d-block mb-2"></i>
+                No files uploaded yet
+            </div>
+        `);
+        fileCount.html('<small class="text-muted">No files uploaded</small>');
+        return;
+    }
+    
+    fileCount.html(`<small class="text-muted">${validFiles.length} file${validFiles.length > 1 ? 's' : ''} uploaded</small>`);
+    
+    let html = '';
+    validFiles.forEach((file) => {
+        const iconClass = getFileIconClass(file.extension);
+        const badgeColor = getFileBadgeColor(file.extension);
+        
+        html += `
+            <div class="list-group-item d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center" style="flex: 1; min-width: 0;">
+                    <i class="fas ${iconClass} file-icon me-2"></i>
+                    <span class="file-name text-truncate" data-filename="${file.filename}" style="cursor: pointer;">
+                        ${file.filename}
+                    </span>
+                    <span class="badge badge-file bg-${badgeColor} ms-2 flex-shrink-0">${file.extension || 'Unknown'}</span>
+                </div>
+                <div class="file-actions flex-shrink-0 ms-2">
+                    <button class="btn btn-primary btn-sm load-file-btn" data-filename="${file.filename}" title="Load this file for analysis">
+                        <i class="fas fa-folder-open"></i>
+                    </button>
+                    <button class="btn btn-info btn-sm preview-btn" data-filename="${file.filename}" title="Preview Data">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                    <button class="btn btn-success btn-sm download-btn" data-filename="${file.filename}" title="Download">
+                        <i class="fas fa-download"></i>
+                    </button>
+                    <button class="btn btn-danger btn-sm delete-btn" data-filename="${file.filename}" title="Delete">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            </div>
+        `;
+    });
+    
+    fileList.html(html);
+    
+    // Add event listeners
+    fileList.find('.file-name').on('click', function() {
+        const filename = $(this).data('filename');
+        showFileInfoModal(filename);
+    });
+    
+    fileList.find('.load-file-btn').on('click', function(e) {
+        e.stopPropagation();
+        const filename = $(this).data('filename');
+        loadFileForAnalysis(filename);
+    });
+    
+    fileList.find('.preview-btn').on('click', function(e) {
+        e.stopPropagation();
+        const filename = $(this).data('filename');
+        showDataPreviewModal(filename);
+    });
+    
+    fileList.find('.download-btn').on('click', function(e) {
+        e.stopPropagation();
+        const filename = $(this).data('filename');
+        window.location.href = `/files/${filename}/download`;
+    });
+    
+    fileList.find('.delete-btn').on('click', function(e) {
+        e.stopPropagation();
+        const filename = $(this).data('filename');
+        deleteFile(filename);
+    });
+}
