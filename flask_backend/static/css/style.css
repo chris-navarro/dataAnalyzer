@@ -1,0 +1,496 @@
+/* CSS Variables for themes */
+:root {
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8f9fa;
+    --bg-card: #ffffff;
+    --text-primary: #212529;
+    --text-secondary: #6c757d;
+    --border-color: #dee2e6;
+    --shadow-color: rgba(0,0,0,0.1);
+    --hover-bg: #f8f9fa;
+    --stat-bg: #f8f9fa;
+    --stat-border: #007bff;
+    --modal-bg: #ffffff;
+}
+
+[data-bs-theme="dark"] {
+    --bg-primary: #1a1a2e;
+    --bg-secondary: #16213e;
+    --bg-card: #1e2a4a;
+    --text-primary: #e0e0e0;
+    --text-secondary: #a0a0b0;
+    --border-color: #2a3a5a;
+    --shadow-color: rgba(0,0,0,0.3);
+    --hover-bg: #2a3a5a;
+    --stat-bg: #16213e;
+    --stat-border: #4a7ab5;
+    --modal-bg: #1e2a4a;
+}
+
+/* Body styles */
+body {
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Card styles */
+.card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px var(--shadow-color);
+}
+
+.card:hover {
+    box-shadow: 0 4px 16px var(--shadow-color);
+}
+
+.card-header {
+    background-color: transparent;
+    border-bottom: 1px solid var(--border-color);
+    padding: 15px 20px;
+    border-radius: 12px 12px 0 0 !important;
+}
+
+/* File list styles */
+.list-group-item {
+    background-color: var(--bg-card);
+    color: var(--text-primary);
+    border-color: var(--border-color);
+    padding: 12px 16px;
+    transition: all 0.2s ease;
+    cursor: default;
+}
+
+.list-group-item:hover {
+    background-color: var(--hover-bg);
+}
+
+.list-group-item .file-name {
+    font-weight: 500;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.list-group-item .file-name:hover {
+    color: #007bff;
+}
+
+.list-group-item .file-actions {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.list-group-item .file-actions .btn {
+    padding: 2px 6px;
+    font-size: 12px;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.list-group-item .file-actions .btn:hover {
+    transform: scale(1.1);
+}
+
+/* Badge styles */
+.badge-file {
+    font-size: 11px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: 500;
+}
+
+/* Modal styles */
+.modal-content {
+    background-color: var(--modal-bg);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    box-shadow: 0 10px 40px var(--shadow-color);
+}
+
+.modal-header {
+    border-bottom: 1px solid var(--border-color);
+    padding: 15px 20px;
+}
+
+.modal-header .modal-title {
+    color: var(--text-primary);
+}
+
+.modal-body {
+    padding: 20px;
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+.modal-footer {
+    border-top: 1px solid var(--border-color);
+    padding: 15px 20px;
+}
+
+/* Modal stat cards */
+.modal-body .stat-card {
+    background-color: var(--stat-bg);
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    border-left: 4px solid var(--stat-border);
+}
+
+.modal-body .stat-card h6 {
+    color: var(--text-secondary);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+}
+
+.modal-body .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 8px;
+}
+
+.modal-body .stat-item {
+    background-color: var(--bg-card);
+    padding: 8px 12px;
+    border-radius: 6px;
+    text-align: center;
+    border: 1px solid var(--border-color);
+}
+
+.modal-body .stat-item .label {
+    display: block;
+    font-size: 10px;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.modal-body .stat-item .value {
+    display: block;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-top: 2px;
+}
+
+.modal-body .table-responsive {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.modal-body .table {
+    font-size: 13px;
+    margin-bottom: 0;
+}
+
+.modal-body .table th {
+    position: sticky;
+    top: 0;
+    background-color: var(--bg-secondary);
+    z-index: 10;
+}
+
+/* Form controls */
+.form-control, .form-select {
+    background-color: var(--bg-card);
+    color: var(--text-primary);
+    border-color: var(--border-color);
+    border-radius: 8px;
+}
+
+.form-control:focus, .form-select:focus {
+    background-color: var(--bg-card);
+    color: var(--text-primary);
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+select[multiple] {
+    min-height: 100px;
+}
+
+select[multiple] option {
+    padding: 8px 12px;
+}
+
+select[multiple] option:checked {
+    background: #007bff;
+    color: white;
+}
+
+/* Buttons */
+.btn {
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #5a67d8 0%, #6a4198 100%);
+}
+
+.btn-success {
+    background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
+    border: none;
+    color: #2d3436;
+}
+
+.btn-success:hover {
+    background: linear-gradient(135deg, #6fe0a0 0%, #7ac3e4 100%);
+    color: #2d3436;
+}
+
+.btn-warning {
+    background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+    border: none;
+}
+
+.btn-warning:hover {
+    background: linear-gradient(135deg, #f5c355 0%, #fc9075 100%);
+}
+
+/* Result content */
+#resultContent {
+    min-height: 400px;
+    padding: 15px;
+    background-color: var(--bg-card);
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+#resultContent #plotly-graph {
+    width: 100% !important;
+    height: 500px !important;
+}
+
+/* Table styles */
+.table {
+    color: var(--text-primary);
+    border-color: var(--border-color);
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) {
+    background-color: var(--hover-bg);
+}
+
+.table-hover > tbody > tr:hover {
+    background-color: var(--stat-bg);
+}
+
+.table th {
+    background-color: var(--bg-secondary);
+    border-color: var(--border-color);
+    font-weight: 600;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .col-lg-5, .col-lg-7 {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .stat-grid {
+        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    }
+    
+    .list-group-item {
+        padding: 10px 12px;
+    }
+    
+    .list-group-item .file-actions .btn {
+        padding: 1px 4px;
+        font-size: 11px;
+    }
+    
+    .modal-dialog {
+        margin: 10px;
+    }
+}
+
+/* Loading animation */
+.spinner-border {
+    width: 2rem;
+    height: 2rem;
+}
+
+/* Alert styles */
+.alert {
+    border-radius: 8px;
+    border: none;
+}
+
+/* Theme toggle button */
+#themeToggle {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 20px;
+}
+
+#themeToggle:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* File icon styles */
+.file-icon {
+    font-size: 16px;
+    margin-right: 8px;
+}
+
+.file-icon.fa-file-csv { color: #28a745; }
+.file-icon.fa-file-excel.text-primary { color: #007bff; }
+.file-icon.fa-file-excel.text-warning { color: #fd7e14; }
+.file-icon.fa-file-excel.text-info { color: #17a2b8; }
+.file-icon.fa-file-excel.text-secondary { color: #6f42c1; }
+
+/* Empty state */
+#emptyState {
+    display: block;
+}
+
+#emptyState .card-body {
+    padding: 60px 20px;
+}
+
+/* Modal backdrop fix */
+.modal-backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-backdrop.show {
+    opacity: 1;
+}
+
+/* Load file button */
+.load-file-btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    color: white;
+}
+
+.load-file-btn:hover {
+    background: linear-gradient(135deg, #5a67d8 0%, #6a4198 100%);
+    color: white;
+    transform: scale(1.1);
+}
+
+/* Highlight for loaded file */
+.list-group-item.bg-primary.bg-opacity-10 {
+    background-color: rgba(13, 110, 253, 0.1) !important;
+    border-left: 3px solid #007bff;
+}
+
+[data-bs-theme="dark"] .list-group-item.bg-primary.bg-opacity-10 {
+    background-color: rgba(13, 110, 253, 0.2) !important;
+}
+
+/* Current file badge */
+#currentFileBadge {
+    font-size: 12px;
+    padding: 6px 12px;
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.2) !important;
+    color: white !important;
+}
+
+#currentFileBadge .fa-file {
+    margin-right: 4px;
+}
+
+/* Animation for file actions */
+.file-actions .btn {
+    transition: all 0.2s ease;
+}
+
+.file-actions .btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+/* File action tooltips */
+.file-actions .btn {
+    position: relative;
+}
+
+.file-actions .btn:hover::after {
+    content: attr(title);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 4px 8px;
+    background: rgba(0,0,0,0.8);
+    color: white;
+    font-size: 11px;
+    border-radius: 4px;
+    white-space: nowrap;
+    z-index: 1000;
+    margin-bottom: 4px;
+}
+
+/* Loading animation for file operations */
+.btn-loading {
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+.btn-loading .spinner-border-sm {
+    display: inline-block;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .file-actions .btn {
+        padding: 3px 6px;
+        font-size: 11px;
+    }
+    
+    .file-actions .btn:hover::after {
+        display: none;
+    }
+    
+    #currentFileBadge {
+        font-size: 10px;
+        padding: 4px 8px;
+    }
+}
