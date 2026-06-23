@@ -5,8 +5,6 @@ A powerful, modern web application for analyzing Excel and CSV files with intera
 [![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](https://github.com/yourusername/srevis)
 [![Python](https://img.shields.io/badge/python-3.8+-green.svg)](https://www.python.org/)
 [![Flask](https://img.shields.io/badge/flask-2.3.3-blue.svg)](https://flask.palletsprojects.com/)
-[![License](https://img.shields.io/badge/license-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
 
 ## 📋 Table of Contents
 
@@ -138,131 +136,179 @@ python app.py
 Access the application
 Open your browser and navigate to: http://localhost:5000
 ```
-
 ## 📖 Usage Guide
-Uploading Files
-Click the "Upload" button in the left panel
 
-Select your Excel (.xlsx, .xls, .xlsm, .xlsb, .ods) or CSV file
+### 📤 Uploading Files
 
-Click "Upload & Analyze" to load the file
+1. Click the **"Upload"** button in the left panel
+2. Select your file (Excel or CSV format)
+3. Click **"Upload & Analyze"** to load the file
 
-Analyzing Data
-Select Columns:
+**Supported Formats:**
+- Excel: `.xlsx`, `.xls`, `.xlsm`, `.xlsb`, `.ods`
+- CSV: `.csv`
 
-Choose X-Axis columns (for categories/timeline)
+---
 
-Choose Y-Axis columns (for values to analyze)
+### 📊 Analyzing Data
 
-Choose Chart Type:
+#### Step 1: Select Columns
+| Selection | Description |
+|-----------|-------------|
+| **X-Axis** | Choose columns for categories, labels, or timeline |
+| **Y-Axis** | Choose columns for values to analyze |
 
-Comparison & Ranking: Bar, Column, Spider/Radar
+*💡 Tip: Hold Ctrl/Cmd for multiple column selection*
 
-Trends & Time Series: Line, Area, Candlestick
+#### Step 2: Choose Chart Type
 
-Distribution & Spread: Histogram, Box, Violin
+| Category | Chart Types | Best For |
+|----------|-------------|----------|
+| **Comparison & Ranking** | Bar, Column, Spider/Radar | Comparing values across categories |
+| **Trends & Time Series** | Line, Area, Candlestick | Showing patterns over time |
+| **Distribution & Spread** | Histogram, Box, Violin | Understanding data distribution |
+| **Correlation & Relationships** | Scatter, Bubble, Heatmap | Finding relationships between variables |
+| **Part-to-Whole** | Pie, Donut, Treemap, Sunburst | Showing proportions and composition |
 
-Correlation & Relationships: Scatter, Bubble, Heatmap
+#### Step 3: Select Display Type
 
-Part-to-Whole: Pie, Donut, Treemap, Sunburst
+| Display Type | Description |
+|--------------|-------------|
+| **Graph** | Interactive Plotly visualization with zoom, hover, and export features |
+| **Table** | Tabular data view for precise value inspection |
 
-Select Display Type:
+#### Step 4: Generate
+Click the **"Generate"** button to create your visualization
 
-Graph: Interactive Plotly visualization
+---
 
-Table: Tabular data view
+### 📁 Managing Files
 
-Generate: Click the "Generate" button to create your visualization
+The file management panel provides complete control over your uploaded data:
 
-Managing Files
-Load: Click the folder icon to load a file for analysis
+| Action | Icon | Description |
+|--------|------|-------------|
+| **Load** | 📂 | Load a file for analysis (replaces current data) |
+| **Preview** | 👁️ | View data preview without loading |
+| **Download** | ⬇️ | Download the file to your computer |
+| **Delete** | 🗑️ | Remove the file from the system |
+| **View Info** | 📋 | See detailed file information (click filename) |
+| **Refresh** | 🔄 | Refresh the file list |
+| **Clear All** | 🗑️ | Delete all uploaded files |
 
-Preview: Click the eye icon to view data without loading
+---
 
-Download: Click the download icon to save the file
+### 📈 Statistics
 
-Delete: Click the trash icon to remove a file
+Click the **"Statistics"** button to view comprehensive statistics for selected columns:
 
-View Info: Click the filename to see detailed file information
+#### Numeric Columns
+| Statistic | Description |
+|-----------|-------------|
+| **Mean** | Average value |
+| **Median** | Middle value (50th percentile) |
+| **Standard Deviation** | Measure of data spread |
+| **Minimum** | Smallest value |
+| **Maximum** | Largest value |
+| **Count** | Number of non-null values |
+| **Unique** | Number of distinct values |
+| **Skewness** | Measure of distribution asymmetry |
+| **Kurtosis** | Measure of distribution tail heaviness |
 
-## Statistics
-Click the "Statistics" button to view comprehensive statistics for selected columns including:
+#### Categorical Columns
+| Statistic | Description |
+|-----------|-------------|
+| **Count** | Number of non-null values |
+| **Unique Values** | Number of distinct categories |
+| **Sample Values** | Example of unique values |
 
-Mean, Median, Standard Deviation
-
-Minimum, Maximum
-
-Count, Unique values
-
-Skewness, Kurtosis
+---
 
 ## 📊 Chart Types
-Comparison & Ranking
-Bar Chart: Compare values across categories
 
-Column Chart: Vertical bar representation
+### 📊 Comparison & Ranking
+| Chart Type | Description | Best Use Case |
+|------------|-------------|---------------|
+| **Bar Chart** | Rectangular bars for comparing values across categories | Sales by product, population by country |
+| **Column Chart** | Vertical bars for category comparison | Monthly revenue, survey results |
+| **Spider/Radar Chart** | Multi-variable comparison on a central point | Performance metrics, skill assessment |
 
-Spider/Radar Chart: Compare multiple variables
+### 📈 Trends & Time Series
+| Chart Type | Description | Best Use Case |
+|------------|-------------|---------------|
+| **Line Chart** | Data points connected by lines showing trends | Stock prices, temperature changes |
+| **Area Chart** | Line chart with filled area below | Cumulative totals, stacked data |
+| **Candlestick Chart** | Financial data showing open, high, low, close | Stock market analysis, trading |
 
-## Trends & Time Series
-Line Chart: Show trends over time
+### 📊 Distribution & Spread
+| Chart Type | Description | Best Use Case |
+|------------|-------------|---------------|
+| **Histogram** | Groups data into bins showing frequency | Age distribution, test scores |
+| **Box Plot** | Shows quartiles, median, and outliers | Comparing distributions, identifying outliers |
+| **Violin Plot** | Combines box plot with density estimation | Detailed distribution comparison |
 
-Area Chart: Emphasize cumulative totals
+### 🔗 Correlation & Relationships
+| Chart Type | Description | Best Use Case |
+|------------|-------------|---------------|
+| **Scatter Plot** | Points on Cartesian plane showing relationships | Correlation between two variables |
+| **Bubble Chart** | Scatter plot with size/color representing additional variables | Multi-dimensional data relationships |
+| **Heatmap** | Color-coded matrix showing correlations | Correlation matrix, data density |
 
-## Candlestick Chart: Financial data visualization
+### 🎯 Part-to-Whole
+| Chart Type | Description | Best Use Case |
+|------------|-------------|---------------|
+| **Pie Chart** | Circle divided into proportional slices | Market share, budget allocation |
+| **Donut Chart** | Pie chart with center hole | Enhanced pie chart with focus on proportions |
+| **Treemap** | Nested rectangles showing hierarchical data | File system usage, organizational structure |
+| **Sunburst Chart** | Multi-level donut chart | Hierarchical data with multiple levels |
 
-## Distribution & Spread
-Histogram: Frequency distribution
-
-Box Plot: Show quartiles and outliers
-
-Violin Plot: Distribution comparison
-
-## Correlation & Relationships
-Scatter Plot: Show relationships between variables
-
-Bubble Chart: Multi-dimensional data visualization
-
-## Heatmap: Correlation matrix
-
-Part-to-Whole
-Pie Chart: Show proportions
-
-Donut Chart: Enhanced pie chart
-
-Treemap: Hierarchical data display
-
-Sunburst Chart: Multi-level hierarchical data
+---
 
 ## 🔌 API Endpoints
-File Operations
-Endpoint	Method	Description
-/upload	POST	Upload a new file
-/files	GET	List all uploaded files
-/files/<filename>	GET	Get file details
-/files/<filename>	DELETE	Delete a file
-/files/<filename>/download	GET	Download a file
-/files/clear_all	DELETE	Delete all files
-Analysis Operations
-Endpoint	Method	Description
-/analyze	POST	Generate analysis (graph or table)
-/get_stats	POST	Get column statistics
-/get_file_info	GET	Get current file information
-🤝 Contributing
-Fork the repository
 
-Create your feature branch (git checkout -b feature/AmazingFeature)
+### File Operations
 
-Commit your changes (git commit -m 'Add some AmazingFeature')
+| Endpoint | Method | Description | Request Body |
+|----------|--------|-------------|--------------|
+| `/upload` | POST | Upload a new file | Multipart form data |
+| `/files` | GET | List all uploaded files | - |
+| `/files/<filename>` | GET | Get file details | - |
+| `/files/<filename>` | DELETE | Delete a file | - |
+| `/files/<filename>/download` | GET | Download a file | - |
+| `/files/clear_all` | DELETE | Delete all files | - |
 
-Push to the branch (git push origin feature/AmazingFeature)
+### Analysis Operations
 
-Open a Pull Request
+| Endpoint | Method | Description | Request Body |
+|----------|--------|-------------|--------------|
+| `/analyze` | POST | Generate analysis (graph or table) | JSON with x_columns, y_columns, chart_type, display_type |
+| `/get_stats` | POST | Get column statistics | JSON with columns array |
+| `/get_file_info` | GET | Get current file information | - |
 
+### Example API Usage
 
-## 👨‍💻 Author
+**Generate a chart:**
+```bash
+curl -X POST http://localhost:5000/analyze \
+  -H "Content-Type: application/json" \
+  -d '{
+    "x_columns": ["Date"],
+    "y_columns": ["Sales", "Revenue"],
+    "chart_type": "bar",
+    "display_type": "graph"
+  }'
+```
+## 🤝 Contributing
+
+We welcome contributions from the community! Here's how you can help improve SREVis:
+
+👨‍💻 Author
 Chris Navarro
 
-GitHub: @chrissanchez
+Data Analyst & Software Developer passionate about building intuitive data visualization tools.
 
-LinkedIn: Chris Navarro
+## 🙏 Acknowledgments
+- Built with ❤️ using Flask and Plotly
+- UI powered by Bootstrap
+- Icons by Font Awesome
+- Special thanks to all contributors
