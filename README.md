@@ -5,6 +5,7 @@ https://img.shields.io/badge/version-1.0.0-blue.svg
 https://img.shields.io/badge/python-3.8+-green.svg
 https://img.shields.io/badge/flask-2.3.3-blue.svg
 https://img.shields.io/badge/license-MIT-yellow.svg
+https://img.shields.io/badge/PRs-welcome-brightgreen.svg
 
 # 📋 Table of Contents
 Overview
