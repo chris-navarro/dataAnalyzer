@@ -5,3 +5,6 @@ __pycache__/
 .idea/
 .vscode/
 *.log
+
+uploads/*
+!uploads/.gitkeep
