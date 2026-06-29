@@ -27,7 +27,7 @@
     --modal-bg: #1e2a4a;
 }
 
-/* Body styles */
+/* ==================== BASE STYLES ==================== */
 body {
     background-color: var(--bg-secondary);
     color: var(--text-primary);
@@ -35,7 +35,7 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Card styles */
+/* ==================== CARD STYLES ==================== */
 .card {
     background-color: var(--bg-card);
     border: 1px solid var(--border-color);
@@ -55,7 +55,7 @@ body {
     border-radius: 12px 12px 0 0 !important;
 }
 
-/* File list styles */
+/* ==================== FILE LIST ==================== */
 .list-group-item {
     background-color: var(--bg-card);
     color: var(--text-primary);
@@ -96,7 +96,17 @@ body {
     transform: scale(1.1);
 }
 
-/* Badge styles */
+/* Highlight for loaded file */
+.list-group-item.bg-primary.bg-opacity-10 {
+    background-color: rgba(13, 110, 253, 0.1) !important;
+    border-left: 3px solid #007bff;
+}
+
+[data-bs-theme="dark"] .list-group-item.bg-primary.bg-opacity-10 {
+    background-color: rgba(13, 110, 253, 0.2) !important;
+}
+
+/* ==================== BADGE STYLES ==================== */
 .badge-file {
     font-size: 11px;
     padding: 4px 8px;
@@ -104,7 +114,7 @@ body {
     font-weight: 500;
 }
 
-/* Modal styles */
+/* ==================== MODAL STYLES ==================== */
 .modal-content {
     background-color: var(--modal-bg);
     color: var(--text-primary);
@@ -131,6 +141,14 @@ body {
 .modal-footer {
     border-top: 1px solid var(--border-color);
     padding: 15px 20px;
+}
+
+.modal-backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-backdrop.show {
+    opacity: 1;
 }
 
 /* Modal stat cards */
@@ -197,7 +215,7 @@ body {
     z-index: 10;
 }
 
-/* Form controls */
+/* ==================== FORM CONTROLS ==================== */
 .form-control, .form-select {
     background-color: var(--bg-card);
     color: var(--text-primary);
@@ -225,7 +243,7 @@ select[multiple] option:checked {
     color: white;
 }
 
-/* Buttons */
+/* ==================== BUTTON STYLES ==================== */
 .btn {
     border-radius: 8px;
     font-weight: 500;
@@ -254,6 +272,7 @@ select[multiple] option:checked {
 .btn-success:hover {
     background: linear-gradient(135deg, #6fe0a0 0%, #7ac3e4 100%);
     color: #2d3436;
+    transform: translateY(-2px);
 }
 
 .btn-warning {
@@ -263,9 +282,73 @@ select[multiple] option:checked {
 
 .btn-warning:hover {
     background: linear-gradient(135deg, #f5c355 0%, #fc9075 100%);
+    transform: translateY(-2px);
 }
 
-/* Result content */
+.btn-info {
+    background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+    border: none;
+    color: #2d3436;
+}
+
+.btn-info:hover {
+    background: linear-gradient(135deg, #8ddbd8 0%, #fcc4d8 100%);
+    transform: translateY(-2px);
+    color: #2d3436;
+}
+
+/* Load file button */
+.load-file-btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    color: white;
+}
+
+.load-file-btn:hover {
+    background: linear-gradient(135deg, #5a67d8 0%, #6a4198 100%);
+    color: white;
+    transform: scale(1.1);
+}
+
+/* ==================== THEME TOGGLE ==================== */
+#themeToggle {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 20px;
+}
+
+#themeToggle:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* ==================== FILE ICONS ==================== */
+.file-icon {
+    font-size: 16px;
+    margin-right: 8px;
+}
+
+.file-icon.fa-file-csv { color: #28a745; }
+.file-icon.fa-file-excel.text-primary { color: #007bff; }
+.file-icon.fa-file-excel.text-warning { color: #fd7e14; }
+.file-icon.fa-file-excel.text-info { color: #17a2b8; }
+.file-icon.fa-file-excel.text-secondary { color: #6f42c1; }
+
+/* ==================== EMPTY STATE ==================== */
+#emptyState {
+    display: block;
+}
+
+#emptyState .card-body {
+    padding: 60px 20px;
+}
+
+#emptyState i {
+    opacity: 0.5;
+}
+
+/* ==================== RESULT CONTENT ==================== */
 #resultContent {
     min-height: 400px;
     padding: 15px;
@@ -279,7 +362,7 @@ select[multiple] option:checked {
     height: 500px !important;
 }
 
-/* Table styles */
+/* ==================== TABLE STYLES ==================== */
 .table {
     color: var(--text-primary);
     border-color: var(--border-color);
@@ -299,7 +382,7 @@ select[multiple] option:checked {
     font-weight: 600;
 }
 
-/* Scrollbar styling */
+/* ==================== SCROLLBAR STYLING ==================== */
 ::-webkit-scrollbar {
     width: 8px;
     height: 8px;
@@ -319,11 +402,347 @@ select[multiple] option:checked {
     background: #555;
 }
 
-/* Responsive */
+/* ==================== ALERT STYLES ==================== */
+.alert {
+    border-radius: 8px;
+    border: none;
+}
+
+/* ==================== CURRENT FILE BADGE ==================== */
+#currentFileBadge {
+    font-size: 13px;
+    padding: 8px 12px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+}
+
+#currentFileBadge i {
+    font-size: 16px;
+}
+
+/* ==================== ANALYSIS CONTROLS ==================== */
+#analysisSection .card-body {
+    padding: 15px;
+}
+
+#analysisSection .form-label {
+    font-size: 13px;
+    margin-bottom: 4px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+#analysisSection .text-muted {
+    font-size: 11px;
+}
+
+#analysisSection .form-select {
+    font-size: 13px;
+    padding: 6px 10px;
+    border-radius: 6px;
+    border-color: var(--border-color);
+}
+
+#analysisSection .form-select:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+#analysisSection select[multiple] {
+    min-height: 80px;
+    padding: 4px;
+}
+
+#analysisSection select[multiple] option {
+    padding: 6px 10px;
+    border-radius: 4px;
+    margin: 2px 0;
+    font-size: 13px;
+}
+
+#analysisSection select[multiple] option:hover {
+    background-color: var(--hover-bg);
+}
+
+#analysisSection select[multiple] option:checked {
+    background: #007bff linear-gradient(0deg, #007bff 0%, #007bff 100%);
+    color: white;
+}
+
+/* X and Y Axis side-by-side */
+#analysisSection .row.g-3.mb-3 select[multiple] {
+    min-height: 80px;
+    font-size: 13px;
+}
+
+#analysisSection .row.g-3.mb-3 select[multiple] option {
+    padding: 6px 10px;
+}
+
+/* Chart Type and Display Type side-by-side */
+#analysisSection .row.g-3.mb-3 select {
+    font-size: 13px;
+}
+
+/* Buttons side-by-side */
+#analysisSection .row.g-2 .btn {
+    font-size: 13px;
+    padding: 8px 4px;
+    white-space: nowrap;
+}
+
+#analysisSection .row.g-2 .btn i {
+    margin-right: 4px;
+}
+
+/* Tooltip for buttons */
+#analysisSection .btn {
+    position: relative;
+}
+
+#analysisSection .btn:hover::after {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 4px 8px;
+    background: rgba(0,0,0,0.8);
+    color: white;
+    font-size: 11px;
+    border-radius: 4px;
+    white-space: nowrap;
+    z-index: 1000;
+    margin-bottom: 4px;
+}
+
+/* ==================== ANALYSIS ITEMS ==================== */
+.analysis-item {
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    margin-bottom: 15px;
+    background-color: var(--bg-card);
+}
+
+.analysis-item .card-header {
+    background-color: var(--bg-secondary);
+    padding: 8px 12px;
+    border-radius: 8px 8px 0 0;
+}
+
+.analysis-item .card-body {
+    padding: 12px;
+}
+
+.analysis-item .badge {
+    font-size: 12px;
+    padding: 4px 10px;
+}
+
+.analysis-controls select[multiple] {
+    min-height: 60px;
+    font-size: 12px;
+}
+
+.analysis-controls select[multiple] option {
+    padding: 4px 8px;
+}
+
+.analysis-result {
+    min-height: 150px;
+    border-top: 1px solid var(--border-color);
+    padding-top: 12px;
+}
+
+.analysis-result .table-responsive {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.analysis-result .table {
+    font-size: 13px;
+    margin-bottom: 0;
+}
+
+.analysis-result .table th {
+    position: sticky;
+    top: 0;
+    background-color: var(--bg-secondary);
+    z-index: 10;
+}
+
+.analysis-result .table td {
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.analysis-result .spinner-border {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+/* Remove analysis button */
+.remove-analysis {
+    padding: 2px 6px;
+    font-size: 12px;
+}
+
+.remove-analysis:hover {
+    background-color: #dc3545;
+    color: white;
+}
+
+/* ==================== FILTER CONTROLS ==================== */
+.filter-controls {
+    margin-top: 8px;
+    padding: 8px;
+    background-color: var(--bg-secondary);
+    border-radius: 6px;
+}
+
+.filter-controls .input-group {
+    max-width: 300px;
+}
+
+.filter-controls .input-group-text {
+    background-color: transparent;
+    border: none;
+    padding: 4px 8px;
+}
+
+.filter-controls .form-control {
+    font-size: 12px;
+    padding: 4px 8px;
+}
+
+.filter-active {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* ==================== ANALYSIS COUNT ==================== */
+#analysisCount {
+    font-size: 12px;
+    padding: 4px 10px;
+}
+
+/* ==================== ADD ANALYSIS BUTTON ==================== */
+#addNewAnalysis {
+    transition: all 0.3s ease;
+}
+
+#addNewAnalysis:hover {
+    transform: scale(1.05);
+}
+
+#addNewAnalysis:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* ==================== VALUE COUNT BADGES ==================== */
+.value-count-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    margin: 2px;
+    background-color: var(--bg-secondary);
+    border-radius: 12px;
+    font-size: 12px;
+    border: 1px solid var(--border-color);
+}
+
+.value-count-badge .count {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+/* ==================== STATS BUTTON ENHANCEMENTS ==================== */
+#showStatsBtn, #countValuesBtn {
+    transition: all 0.3s ease;
+}
+
+#showStatsBtn:hover, #countValuesBtn:hover {
+    transform: translateY(-2px);
+}
+
+/* ==================== VALUE COUNT MODAL ==================== */
+#countValuesModalBody .stat-card {
+    background-color: var(--stat-bg);
+    padding: 12px;
+    border-radius: 8px;
+    border-left: 3px solid var(--stat-border);
+}
+
+#countValuesModalBody .badge {
+    font-size: 11px;
+    padding: 4px 8px;
+}
+
+/* ==================== RESULTS CONTAINER ==================== */
+#resultsContainer {
+    padding: 15px;
+}
+
+#analysisItems {
+    max-height: 800px;
+    overflow-y: auto;
+    padding-right: 5px;
+}
+
+#analysisItems .analysis-item {
+    margin-bottom: 20px;
+}
+
+/* Custom scrollbar for analysis items */
+#analysisItems::-webkit-scrollbar {
+    width: 6px;
+}
+
+#analysisItems::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+    border-radius: 3px;
+}
+
+#analysisItems::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 3px;
+}
+
+#analysisItems::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* ==================== FILE MANAGEMENT COMPACT ==================== */
+#fileList .list-group-item {
+    padding: 8px 12px;
+}
+
+#fileList .file-actions .btn {
+    padding: 2px 5px;
+    font-size: 11px;
+}
+
+/* ==================== UPLOAD SECTION COMPACT ==================== */
+#uploadForm .btn {
+    font-size: 14px;
+}
+
+/* ==================== RESPONSIVE DESIGN ==================== */
 @media (max-width: 992px) {
     .col-lg-5, .col-lg-7 {
         width: 100%;
         margin-bottom: 20px;
+    }
+    
+    #analysisSection .row.g-3.mb-3 select[multiple] {
+        min-height: 60px;
+    }
+    
+    #analysisSection .row.g-2 .btn {
+        font-size: 12px;
+        padding: 6px 4px;
     }
 }
 
@@ -344,142 +763,34 @@ select[multiple] option:checked {
     .modal-dialog {
         margin: 10px;
     }
-}
-
-/* Loading animation */
-.spinner-border {
-    width: 2rem;
-    height: 2rem;
-}
-
-/* Alert styles */
-.alert {
-    border-radius: 8px;
-    border: none;
-}
-
-/* Theme toggle button */
-#themeToggle {
-    background: rgba(255, 255, 255, 0.2);
-    border: none;
-    color: white;
-    padding: 6px 12px;
-    border-radius: 20px;
-}
-
-#themeToggle:hover {
-    background: rgba(255, 255, 255, 0.3);
-}
-
-/* File icon styles */
-.file-icon {
-    font-size: 16px;
-    margin-right: 8px;
-}
-
-.file-icon.fa-file-csv { color: #28a745; }
-.file-icon.fa-file-excel.text-primary { color: #007bff; }
-.file-icon.fa-file-excel.text-warning { color: #fd7e14; }
-.file-icon.fa-file-excel.text-info { color: #17a2b8; }
-.file-icon.fa-file-excel.text-secondary { color: #6f42c1; }
-
-/* Empty state */
-#emptyState {
-    display: block;
-}
-
-#emptyState .card-body {
-    padding: 60px 20px;
-}
-
-/* Modal backdrop fix */
-.modal-backdrop {
-    background-color: rgba(0, 0, 0, 0.5);
-}
-
-.modal-backdrop.show {
-    opacity: 1;
-}
-
-/* Load file button */
-.load-file-btn {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    border: none;
-    color: white;
-}
-
-.load-file-btn:hover {
-    background: linear-gradient(135deg, #5a67d8 0%, #6a4198 100%);
-    color: white;
-    transform: scale(1.1);
-}
-
-/* Highlight for loaded file */
-.list-group-item.bg-primary.bg-opacity-10 {
-    background-color: rgba(13, 110, 253, 0.1) !important;
-    border-left: 3px solid #007bff;
-}
-
-[data-bs-theme="dark"] .list-group-item.bg-primary.bg-opacity-10 {
-    background-color: rgba(13, 110, 253, 0.2) !important;
-}
-
-/* Current file badge */
-#currentFileBadge {
-    font-size: 12px;
-    padding: 6px 12px;
-    border-radius: 20px;
-    background-color: rgba(255, 255, 255, 0.2) !important;
-    color: white !important;
-}
-
-#currentFileBadge .fa-file {
-    margin-right: 4px;
-}
-
-/* Animation for file actions */
-.file-actions .btn {
-    transition: all 0.2s ease;
-}
-
-.file-actions .btn:hover {
-    transform: scale(1.1);
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-}
-
-/* File action tooltips */
-.file-actions .btn {
-    position: relative;
-}
-
-.file-actions .btn:hover::after {
-    content: attr(title);
-    position: absolute;
-    bottom: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    padding: 4px 8px;
-    background: rgba(0,0,0,0.8);
-    color: white;
-    font-size: 11px;
-    border-radius: 4px;
-    white-space: nowrap;
-    z-index: 1000;
-    margin-bottom: 4px;
-}
-
-/* Loading animation for file operations */
-.btn-loading {
-    pointer-events: none;
-    opacity: 0.6;
-}
-
-.btn-loading .spinner-border-sm {
-    display: inline-block;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
+    
+    /* Analysis item responsive */
+    .analysis-item .row > div {
+        margin-bottom: 8px;
+    }
+    
+    .analysis-controls select[multiple] {
+        min-height: 40px;
+    }
+    
+    .filter-controls .input-group {
+        max-width: 100%;
+    }
+    
+    /* Controls responsive */
+    #analysisSection .row.g-3.mb-3 > div {
+        margin-bottom: 10px;
+    }
+    
+    #analysisSection .row.g-2 > div {
+        margin-bottom: 6px;
+    }
+    
+    #analysisSection .row.g-2 .btn {
+        font-size: 13px;
+        padding: 8px 12px;
+    }
+    
     .file-actions .btn {
         padding: 3px 6px;
         font-size: 11px;
@@ -493,4 +804,28 @@ select[multiple] option:checked {
         font-size: 10px;
         padding: 4px 8px;
     }
+}
+
+/* ==================== DARK THEME ADJUSTMENTS ==================== */
+[data-bs-theme="dark"] .analysis-item .card-header {
+    background-color: var(--bg-secondary);
+}
+
+[data-bs-theme="dark"] .analysis-item {
+    border-color: var(--border-color);
+}
+
+/* ==================== MISC UTILITIES ==================== */
+.spinner-border {
+    width: 2rem;
+    height: 2rem;
+}
+
+.btn-loading {
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+.btn-loading .spinner-border-sm {
+    display: inline-block;
 }

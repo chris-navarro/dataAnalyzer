@@ -2,11 +2,11 @@
 
 {% block content %}
 <div class="row">
-    <!-- Left Column - Upload and Files -->
+    <!-- Left Column - Controls -->
     <div class="col-lg-5">
         <!-- Upload Section -->
         <div class="card shadow-sm mb-4">
-            <div class="card-header bg-primary text-white">
+            <div class="card-header bg-success text-white">
                 <h5><i class="fas fa-upload me-2"></i>Upload File</h5>
             </div>
             <div class="card-body">
@@ -14,10 +14,10 @@
                     <div class="row g-3">
                         <div class="col-md-8">
                             <input type="file" class="form-control" id="fileInput" name="file" accept=".xlsx,.xls,.xlsm,.xlsb,.ods,.csv">
-                            <small class="text-muted">Supported: Excel (.xlsx, .xls, .xlsm, .xlsb, .ods) and CSV</small>
+                            <small class="text-muted">Supported: Excel and CSV</small>
                         </div>
                         <div class="col-md-4">
-                            <button type="submit" class="btn btn-primary w-100">
+                            <button type="submit" class="btn btn-success w-100">
                                 <i class="fas fa-upload me-2"></i>Upload
                             </button>
                         </div>
@@ -28,7 +28,7 @@
         </div>
         
         <!-- File Management -->
-        <div class="card shadow-sm">
+        <div class="card shadow-sm mb-4">
             <div class="card-header bg-secondary text-white d-flex justify-content-between align-items-center">
                 <h5><i class="fas fa-folder-open me-2"></i>Files</h5>
                 <div>
@@ -44,7 +44,7 @@
                 <div id="fileCount" class="p-2 bg-light border-bottom">
                     <small class="text-muted">No files uploaded</small>
                 </div>
-                <div id="fileList" class="list-group list-group-flush" style="max-height: 600px; overflow-y: auto;">
+                <div id="fileList" class="list-group list-group-flush" style="max-height: 300px; overflow-y: auto;">
                     <div class="list-group-item text-center text-muted py-4">
                         <i class="fas fa-cloud-upload-alt fa-3x d-block mb-2"></i>
                         No files uploaded yet
@@ -52,34 +52,38 @@
                 </div>
             </div>
         </div>
-    </div>
-    
-    <!-- Right Column - Data Analysis -->
-    <div class="col-lg-7">
+        
+        <!-- Data Analysis Controls -->
         <div class="card shadow-sm" id="analysisSection" style="display: none;">
-            <div class="card-header bg-success text-white d-flex justify-content-between align-items-center">
-                <h5><i class="fas fa-chart-pie me-2"></i>Data Analysis</h5>
-                <span id="currentFileBadge" class="badge bg-light text-dark">
-                    <i class="fas fa-file me-1"></i>
-                    <span id="currentFileName">No file loaded</span>
-                </span>
+            <div class="card-header bg-info text-white">
+                <h5><i class="fas fa-sliders-h me-2"></i>Analysis Controls</h5>
             </div>
             <div class="card-body">
+                <div id="currentFileBadge" class="alert alert-info">
+                    <i class="fas fa-file me-2"></i>
+                    <span id="currentFileName">No file loaded</span>
+                </div>
+                
                 <form id="analysisForm">
-                    <div class="row g-3 mb-4">
-                        <div class="col-md-4">
+                    <!-- X and Y Axis side-by-side -->
+                    <div class="row g-3 mb-3">
+                        <div class="col-md-6">
                             <label class="form-label fw-bold">X-Axis Columns</label>
                             <select class="form-select" id="xColumns" multiple size="3">
                             </select>
                             <small class="text-muted">Hold Ctrl/Cmd for multiple</small>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <label class="form-label fw-bold">Y-Axis Columns</label>
                             <select class="form-select" id="yColumns" multiple size="3">
                             </select>
                             <small class="text-muted">Hold Ctrl/Cmd for multiple</small>
                         </div>
-                        <div class="col-md-4">
+                    </div>
+                    
+                    <!-- Chart Type and Display Type side-by-side -->
+                    <div class="row g-3 mb-3">
+                        <div class="col-md-7">
                             <label class="form-label fw-bold">Chart Type</label>
                             <select class="form-select" id="chartType">
                                 <optgroup label="Comparison & Ranking">
@@ -110,41 +114,139 @@
                                 </optgroup>
                             </select>
                         </div>
-                    </div>
-                    
-                    <div class="row g-3 mb-4">
-                        <div class="col-md-4">
+                        <div class="col-md-5">
                             <label class="form-label fw-bold">Display Type</label>
                             <select class="form-select" id="displayType">
                                 <option value="graph">Graph</option>
                                 <option value="table">Table</option>
                             </select>
                         </div>
-                        <div class="col-md-8 d-flex align-items-end gap-2">
-                            <button type="submit" class="btn btn-success">
-                                <i class="fas fa-play me-2"></i>Generate
+                    </div>
+                    
+                    <!-- Buttons side-by-side -->
+                    <div class="row g-2">
+                        <div class="col-md-4">
+                            <button type="submit" class="btn btn-success w-100">
+                                <i class="fas fa-play me-1"></i>Generate
                             </button>
-                            <button type="button" class="btn btn-warning" id="showStatsBtn">
-                                <i class="fas fa-calculator me-2"></i>Statistics
+                        </div>
+                        <div class="col-md-4">
+                            <button type="button" class="btn btn-warning w-100" id="showStatsBtn">
+                                <i class="fas fa-calculator me-1"></i>Statistics
+                            </button>
+                        </div>
+                        <div class="col-md-4">
+                            <button type="button" class="btn btn-info w-100" id="countValuesBtn">
+                                <i class="fas fa-sort-numeric-up me-1"></i>Count
                             </button>
                         </div>
                     </div>
                 </form>
-                
-                <!-- Results -->
-                <div id="results" style="display: none;">
-                    <hr>
-                    <div id="resultContent"></div>
-                </div>
             </div>
         </div>
         
-        <!-- Empty State when no file loaded -->
+        <!-- Empty State -->
         <div class="card shadow-sm" id="emptyState">
             <div class="card-body text-center py-5">
-                <i class="fas fa-file-upload fa-5x text-muted mb-3"></i>
+                <i class="fas fa-file-upload fa-4x text-muted mb-3"></i>
                 <h5 class="text-muted">No file loaded</h5>
-                <p class="text-muted">Upload a file from the left panel to start analyzing</p>
+                <p class="text-muted">Upload a file to start analyzing</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Right Column - Results Display (Table/Graph) -->
+    <div class="col-lg-7">
+        <div class="card shadow-sm">
+            <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                <h5><i class="fas fa-chart-bar me-2"></i>Analysis Results</h5>
+                <div>
+                    <button class="btn btn-light btn-sm me-1" id="addNewAnalysis" title="Add New Analysis">
+                        <i class="fas fa-plus me-1"></i>Add
+                    </button>
+                    <span class="badge bg-light text-dark" id="analysisCount">0/4</span>
+                </div>
+            </div>
+            <div class="card-body" id="resultsContainer">
+                <div class="text-center text-muted py-5" id="noResults">
+                    <i class="fas fa-chart-pie fa-4x mb-3"></i>
+                    <h5>No Analysis Results</h5>
+                    <p>Configure and generate analysis from the left panel</p>
+                </div>
+                <div id="analysisItems"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modals -->
+<!-- File Info Modal -->
+<div class="modal fade" id="fileInfoModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"><i class="fas fa-info-circle me-2"></i>File Information</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="fileInfoModalBody">
+                <div class="text-center">
+                    <div class="spinner-border text-primary" role="status"></div>
+                    <p class="mt-2">Loading file information...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Data Preview Modal -->
+<div class="modal fade" id="dataPreviewModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"><i class="fas fa-table me-2"></i>Data Preview</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="dataPreviewModalBody">
+                <div class="text-center">
+                    <div class="spinner-border text-primary" role="status"></div>
+                    <p class="mt-2">Loading data preview...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Statistics Modal -->
+<div class="modal fade" id="statsModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"><i class="fas fa-chart-line me-2"></i>Column Statistics</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="statsModalBody">
+                <div class="text-center">
+                    <div class="spinner-border text-primary" role="status"></div>
+                    <p class="mt-2">Loading statistics...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Count Values Modal -->
+<div class="modal fade" id="countValuesModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"><i class="fas fa-sort-numeric-up me-2"></i>Value Counts</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="countValuesModalBody">
+                <div class="text-center">
+                    <div class="spinner-border text-primary" role="status"></div>
+                    <p class="mt-2">Loading value counts...</p>
+                </div>
             </div>
         </div>
     </div>
